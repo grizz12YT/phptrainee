@@ -1,0 +1,261 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+
+body{
+    background-color: #FEFEE3;
+
+}
+
+
+.header__admin{
+    display: flex;
+    background-color: #4C956C;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    font-size: 20px;
+    align-items: center;
+
+    filter: drop-shadow(0px 0px 4px rgba(63, 63, 63, 0.7));
+}
+
+
+.exitbutton{
+    font-size: 20px;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    border:0;
+    background-color: #D68C45;
+    align-items: center;
+    color:white;
+}
+
+
+.welcome__header{
+    color: white;
+}
+
+.nav__header{
+    min-width: 1640px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.button__registration{
+    height: 55px;
+    border-radius: 15px;
+    font-size: 22px;
+    border:0;
+    background-color: #d68c45;
+    color:white;
+    
+}
+
+.button__registration:active{
+    background-color: #805227;
+}
+
+
+.button__smena{
+    height: 55px;
+    border-radius: 15px;
+    font-size: 22px;
+    border:0;
+    background-color: #d68c45;
+    color:white;
+    
+}
+
+.button__smena:active{
+    background-color: #805227;
+}
+
+
+.container{
+    max-width: 1640px;
+    margin: 0 auto;
+
+
+}
+
+.windows{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form__reg{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+
+
+.form__smena{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form__smenazadanie{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 286px;
+}
+
+.registr__section{
+    width: 465px;
+    padding: 30px;
+    background-color: #2C6E49;
+    border-radius: 20px;
+    font-size: 18px;
+    color: white;
+
+}
+
+.input__auth{
+    height: 40px;
+    border-radius: 3px;
+    font-size: 20px;
+    /* border: 2px solid #464746; */
+    background-color: #4c956c;
+    color: white;
+    padding-left: 10px;
+    border: 0;
+}
+
+.input__auth:focus{
+    outline: none;
+}
+
+.input__auth::placeholder{
+    color: white;
+}
+
+.error__code{
+    margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+
+table, th, tr, td{
+    border: 2px  solid #2C6E49;  
+    border-collapse: collapse;
+    padding: 5px;  
+    color: white;
+    background-color: #4C956C;  
+    padding: 3px;
+    word-break: break-all;
+    text-align: center;
+}
+
+
+
+.hero__row{
+    background-color: #2C6E49; 
+    min-height: 200px;
+
+
+}
+
+.number{
+    min-width: 152px;
+}
+
+.change__status__order__th{
+
+    word-break: keep-all;
+}
+
+
+
+.status__order__th{
+    min-width: 338px;    
+    word-break: keep-all;
+    align-items: center;
+}
+.button__exit{
+    margin: 15px 0 0 15px;
+    font-size: 20px;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    border:0;
+    background-color: #D68C45;
+    align-items: center;
+    color:white;
+}
+
+
+.buttons__orders{
+    font-size: 18px;
+    padding: 11px 13px;
+    border-radius: 20px;
+    color: white;
+    border: 0;
+    background-color: #2C6E49;
+}
+
+.buttons__orders:active{
+    background-color: #424242;
+}
+
+
+
+.order__status__buttons{
+    gap: 10px;
+    display: flex;
+}
+
+
+.table__buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.button__exit:active{
+    background-color: #7c7a7a;
+}
+
+
+.tablerow{
+    margin: 0 auto;
+    max-width: 1640px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.orders__no{
+    font-size: 30px;
+}
+
+.table__orders{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.number__of__smena{
+    min-width: 152px;
+}
+
+.positions__order{
+    min-width: 767px;
+}

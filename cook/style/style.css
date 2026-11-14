@@ -1,0 +1,110 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+body{
+    background-color: #FEFEE3;
+}
+
+
+
+
+table, th, tr, td{
+    border: 2px  solid #2C6E49;  
+    border-collapse: collapse;
+    padding: 5px;  
+    color: white;
+    background-color: #4C956C;  
+    /* min-width: 250px; */
+    min-height: 50px;
+    padding: 3px;
+    word-break: break-all;
+    text-align: center;
+}
+
+
+
+.hero__row{
+    background-color: #2C6E49; 
+    min-height: 200px;
+
+
+}
+
+.number{
+    min-width: 50px;
+}
+
+.change__status__order__th{
+    min-width: 200px;
+    word-break: keep-all;
+}
+
+
+.number__of__smena{
+    min-width: 60px;
+}
+
+.status__order__th{
+    min-width: 90px;
+    word-break: keep-all;
+    align-items: center;
+}
+.button__exit{
+    margin: 15px 0 0 15px;
+    font-size: 20px;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    border:0;
+    background-color: #D68C45;
+    align-items: center;
+    color:white;
+}
+
+
+.buttons__orders{
+    font-size: 18px;
+    padding: 11px 13px;
+    border-radius: 20px;
+    color: white;
+    border: 0;
+    background-color: #2C6E49;
+}
+
+.buttons__orders:active{
+    background-color: #424242;
+}
+
+
+
+.order__status__buttons{
+    gap: 10px;
+    display: flex;
+}
+
+
+.table__buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.button__exit:active{
+    background-color: #7c7a7a;
+}
+
+
+.tablerow{
+    margin: 0 auto;
+    max-width: 1640px;
+    font-size: 20px;
+}
+
+.orders__no{
+    font-size: 30px;
+}
+
