@@ -1,11 +1,11 @@
 <?php 
-    $hostname = "192.168.10.251";
-    $username = "jvtgvpds";
-    $password = "85CLb1";
+    // $hostname = "192.168.10.251";
+    // $username = "jvtgvpds";
+    // $password = "85CLb1";
 
-    // $username = "root";
-    // $password = "";
-    // $hostname = "localhost";
+    $username = "root";
+    $password = "";
+    $hostname = "localhost";
     $database = "jvtgvpds_m3";
 
     $mysqli = new mysqli($hostname, $username, $password, $database);

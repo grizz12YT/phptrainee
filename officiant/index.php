@@ -28,6 +28,81 @@
         }
 ?>
 
+ <?php
+    if (isset($_POST['buttonorder'])){
+        if ($_POST['orderpos']){
+            if ($_POST['positionmenu']){
+                $orderpos = $_POST['orderpos'];
+                $positionmenu = $_POST['positionmenu'];
+                $countorder = $_POST['countorder'];
+                $provorder = $mysqli -> prepare("SELECT `ID`,`IDorder`, `IDeat`, `Count` FROM `PosInOrder` WHERE `IDorder` = ? AND `IDeat`= ?");
+                $provorder -> bind_param('ss', $orderpos, $positionmenu);
+                $provorder -> execute();
+                if(!$provorder){
+                    die($mysqli ->error);
+                }
+                $resultprovorder = $provorder->get_result();
+                $assocprovorder = $resultprovorder -> fetch_assoc();
+                
+
+                if($assocprovorder){
+                    $idprovorder = $assocprovorder['ID'];
+                    $updateorder = $mysqli -> prepare("UPDATE `PosInOrder` SET `Count` = ? WHERE `PosInOrder`.`ID` = ?");
+                    $updateorder -> bind_param('ss', $countorder, $idprovorder);
+                    $updateorder -> execute();
+                    if(!$updateorder){
+                        die("ошибка в подсчете". $mysqli->error);
+                    }
+                    $updateorder -> close();
+                    header("location: /index.php");
+                    
+                }
+                else{
+                $insertorder = $mysqli -> prepare("INSERT INTO `PosInOrder` (`IDorder`, `IDeat`, `Count`) VALUES (?, ?, ?)");
+                $insertorder -> bind_param('sss', $orderpos, $positionmenu, $countorder);
+                $insertorder -> execute();
+                if(!$insertorder){
+                    die($mysqli ->error);
+                }
+                $insertorder ->close();
+                header("location: /index.php");
+                exit;
+
+
+
+            }}}
+
+
+
+
+
+    }elseif(isset($_POST['buttonordermin'])){
+        if ($_POST['orderpos']){
+            if ($_POST['positionmenu']){
+                $orderpos = $_POST['orderpos'];
+                $positionmenu = $_POST['positionmenu'];
+                $countorder = $_POST['countorder'];
+                $provorder = $mysqli -> prepare("SELECT `ID`,`IDorder`, `IDeat`, `Count` FROM `PosInOrder` WHERE `IDorder` = ? AND `IDeat`= ?");
+                $provorder -> bind_param('ss', $orderpos, $positionmenu);
+                $provorder -> execute();
+                if(!$provorder){
+                    die($mysqli ->error);
+                }
+                $resultprovorder = $provorder->get_result();
+                $assocprovorder = $resultprovorder -> fetch_assoc();
+                $deleteposition = $mysqli -> prepare("DELETE FROM `PosInOrder` WHERE `PosInOrder`.`ID` = ?");
+                $deleteposition ->bind_param('s', $assocprovorder['ID']);
+                $deleteposition -> execute();
+                if(!$assocprovorder){
+                    die($mysqli->error);
+                }
+                $deleteposition->close();
+                header("location: /index.php");
+                exit;
+
+            }}}
+                        
+?>
 <header class="header__admin">
         <div class="nav__header container">
             <?php
@@ -147,11 +222,11 @@
         <section class="registr__section container">
                 <form action="" method="post" name="form__smenauser" class="form__smenazadanie">
                     <div class="form__smena">
-                        <h2 class="hero__registration">Назначение сотрудника на смену</h2>
-                        <select name="valuesmena" id="" class='input__auth selector__roles'>
-                            <option value="">Выберите смену</option>
+                        <h2 class="hero__registration">Добавить в заказ позицию</h2>
+                        <select name="orderpos" id="" class='input__auth selector__roles'>
+                            <option value="">Выберите заказ</option>
                             <?php
-                                $selectsmena = $mysqli -> prepare("SELECT `ID` FROM `smeni`");
+                                $selectsmena = $mysqli -> prepare("SELECT `ID` FROM `orders`");
                                 if (!$selectsmena){
                                     die($mysqli->error);
                                 }
@@ -163,57 +238,34 @@
                                 }
                             ?>
                         </select>
-                        <select name="valueuser" id="" class='input__auth selector__roles'>
-                            <option value="">Выберите сотрудника</option>
+                        <select name="positionmenu" id="" class='input__auth selector__roles'>
+                            <option value="">Выберите позицию из меню</option>
                             <?php
-                                $userselect = $mysqli -> prepare("SELECT `Users`.`ID`, `Users`.`login` AS 'user', `role`.`role` AS 'roleuser' FROM `Users` LEFT JOIN `role` ON `Users`.`role` = `role`.`ID`");
-                                if(!$userselect){
-                                    die("не работает". $mysqli->error);
+                                $orderselect = $mysqli -> prepare("SELECT `pricemenu`.`Name` AS `Namefood`, `pricemenu`.`Price` AS `Price`, `pricemenu`.`ID` AS `ID` FROM `pricemenu` LEFT JOIN `PosInOrder` ON `pricemenu`.`ID` = `PosInOrder`.`ID`");
+                                if(!$orderselect){
+                                    die($mysqli->error);
                                 }
-                                $userselect -> execute();
-                                $resultuser = $userselect ->get_result();
+                                $orderselect -> execute();
+                                $resultorder = $orderselect ->get_result();
                                
-                                while ($assocuser = $resultuser -> fetch_assoc()){
-                                    echo "<option value=". $assocuser['ID'] . ">" . $assocuser['user'] . " | " . $assocuser['roleuser'] . "</option>";
+                                while ($assocorder = $resultorder -> fetch_assoc()){
+                                    echo "<option value=". $assocorder['ID'] . ">" . $assocorder['Namefood']." | ". $assocorder['Price']. "</option>";
                                 }
                                 
                             ?>
 
                         </select>
                         
+                    <input type="number" class="input__auth selector__roles" name="countorder">
+                    <div class="buttons__options">
+                        <button type="submit" name="buttonorder" class="button__smena">Добавить позицию в заказ</button>
+                        <button type="submit" name="buttonordermin" class="button__smena">Убрать позицию из заказа</button>
+                
                     </div>
-                    <?php
-                        if (isset($_POST['buttonformsmena'])){
-                            if ($_POST['valuesmena']){
-                                if ($_POST['valueuser']){
-                                    $smenavalue = $_POST['valuesmena'];
-                                    $valueuser = $_POST['valueuser'];
-                                    $proverka = $mysqli -> prepare("SELECT `IDsmena`, `IDuser` FROM `UsersOnSmena` WHERE `IDsmena` = ? AND `IDuser` = ? LIMIT 1");
-                                    $proverka -> bind_param('ss', $smenavalue, $valueuser);
-                                    $proverka -> execute();
-                                    $resultproverka = $proverka -> get_result();
-                                    $assocproverka = $resultproverka -> fetch_assoc();
-                                    if(!$assocproverka){
+                    
 
-                                        $buttonusersmena = $mysqli -> prepare("INSERT INTO `UsersOnSmena` (`ID`, `IDsmena`, `IDuser`, `Update_at`, `Created_at`) VALUES (NULL, ?, ?, NOW(), NOW())");
-                                        $buttonusersmena -> bind_param('ss', $smenavalue, $valueuser);
-                                        $buttonusersmena -> execute();
-                                        $buttonusersmena -> close(); 
-
-                                        echo "Сотрудник поставлен на смену";
-                                    }else{
-                                        echo 'Сотрудник уже на смене';
-                                    }}}
-
-
-
-
-
-                        }
-                        
-                    ?>
-
-                    <button type="submit" name="buttonformsmena" class="button__smena">Добавить сотрудника на смену</button>  
+                    </div>
+                   
 
                 </form>
             </section>

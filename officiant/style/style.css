@@ -62,6 +62,14 @@ body{
 }
 
 
+.buttons__options{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+
+}
+
+
 .button__smena{
     height: 55px;
     border-radius: 15px;
@@ -159,7 +167,7 @@ table, th, tr, td{
     color: white;
     background-color: #4C956C;  
     padding: 3px;
-    word-break: break-all;
+    word-break: break-word;    
     text-align: center;
 }
 
@@ -203,7 +211,7 @@ table, th, tr, td{
 
 .buttons__orders{
     font-size: 18px;
-    padding: 11px 13px;
+    padding: 11px 9px;
     border-radius: 20px;
     color: white;
     border: 0;
@@ -258,4 +266,8 @@ table, th, tr, td{
 
 .positions__order{
     min-width: 767px;
+}
+
+.sections__options{
+    display: flex;
 }
